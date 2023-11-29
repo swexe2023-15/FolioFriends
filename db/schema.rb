@@ -11,12 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_11_22_070618) do
-  create_table "books", force: :cascade do |t|
-    t.string "bookname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "bookshelves", force: :cascade do |t|
     t.string "shelfname"
     t.datetime "created_at", null: false
@@ -24,11 +18,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_070618) do
   end
 
   create_table "histories", force: :cascade do |t|
+    t.string "book_api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
+    t.string "book_api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

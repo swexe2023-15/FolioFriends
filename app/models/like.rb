@@ -1,4 +1,4 @@
 class Like < ApplicationRecord
     belongs_to :user
-    belongs_to :book
+    validates :book_api_id, presence: true
 end

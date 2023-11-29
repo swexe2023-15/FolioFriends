@@ -1,0 +1,6 @@
+<% if current_user %>
+  <%= link_to '自分の本棚を見る', bookshelves_path %>
+<% else %>
+  <%= link_to '新規登録', new_user_path %>
+  <%= link_to 'ログイン', login_path %>
+<% end %>
