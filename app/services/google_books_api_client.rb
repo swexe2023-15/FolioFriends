@@ -13,4 +13,9 @@ class GoogleBooksApiClient
       []
     end
   end
+  
+  def self.book_details(book_id)
+    response = get("/volumes/#{book_id}")
+    response.success? ? response.parsed_response : nil
+  end
 end

@@ -1,4 +1,4 @@
 class Bookshelf < ApplicationRecord
-    has_many :likes
-    belongs_to :user
+  belongs_to :user
+  serialize :book_api_ids, Array
 end

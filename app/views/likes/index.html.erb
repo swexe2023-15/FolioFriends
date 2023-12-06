@@ -1,0 +1,18 @@
+<h1>お気に入りの書籍</h1>
+
+<% if @liked_books.empty? %>
+  <p>お気に入りに追加された書籍はありません。</p>
+<% else %>
+  <div>
+    <% @liked_books.each do |book| %>
+      <div>
+        <% if book["volumeInfo"]["imageLinks"] %>
+          <%= image_tag book["volumeInfo"]["imageLinks"]["thumbnail"] %>
+        <% end %>
+        <h3><%= book["volumeInfo"]["title"] %></h3>
+        <p><%= book["volumeInfo"]["authors"]&.join(", ") %></p>
+        <%= link_to 'Google Booksで見る', book["volumeInfo"]["infoLink"], target: "_blank" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'books#index' # test
   resources :books, only: [:index]
+  resources :likes, only: [:create, :destroy]
   
   get 'history/index'
   get 'history/create'

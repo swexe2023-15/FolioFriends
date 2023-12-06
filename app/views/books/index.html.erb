@@ -15,7 +15,11 @@
           <%= image_tag book["volumeInfo"]["imageLinks"]["thumbnail"] %>
         <% end %>
         <p><%= book["volumeInfo"]["description"] %></p>
-        <%= link_to 'Google Booksで見る', book["volumeInfo"]["infoLink"], target: "_blank" %>
+        <%= link_to 'Google Booksで見る', book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+        <%= form_with(url: likes_path, method: :post) do |form| %>
+        <%= form.hidden_field :book_api_id, value: book["id"] %>
+        <%= form.submit "いいね" %>
+        <% end %>
       </div>
     <% end %>
   </div>
