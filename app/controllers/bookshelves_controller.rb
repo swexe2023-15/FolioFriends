@@ -1,6 +1,7 @@
 class BookshelvesController < ApplicationController
   def index
     @bookshelves = Bookshelf.all
+    render
   end
 
   def new
@@ -8,7 +9,7 @@ class BookshelvesController < ApplicationController
   end
 
   def create
-    @bookshelf = current_user.bookshelves.new(bookshelf_params)
+    @bookshelf = Bookshelf.new(bookshelf_params)
     if @bookshelf.save
       redirect_to bookshelves_path
     else
@@ -34,6 +35,6 @@ class BookshelvesController < ApplicationController
   private
 
   def bookshelf_params
-    params.require(:bookshelf).permit(:shelfname)
+    params.permit(:shelfname)
   end
 end

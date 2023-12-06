@@ -1,2 +1,9 @@
-<h1>Bookshelves#index</h1>
-<p>Find me in app/views/bookshelves/index.html.erb</p>
+<h1>本棚一覧</h1>
+<p>
+    <% @bookshelves.each do |e| %>
+    <%= e.shelfname %>
+    
+    <% end %>
+    
+    <%= link_to '新規追加', bookshelves_create_path %>
+</p>
