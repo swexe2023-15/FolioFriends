@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'books#index' # test
+  resources :books, only: [:index]
+  
   get 'history/index'
   get 'history/create'
   get 'likes/create'
