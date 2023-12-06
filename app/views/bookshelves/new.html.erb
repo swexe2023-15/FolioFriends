@@ -1,2 +1,9 @@
-<h1>Bookshelves#new</h1>
-<p>Find me in app/views/bookshelves/new.html.erb</p>
+<h1>本棚の作成</h1>
+<p>
+    <%= form_with model: @bookshelf, local: true do |f| %>
+        <%= f.label :shelfname, '名前' %>
+        <%= f.text_field :shelfname %>
+        
+        <%= f.submit '登録' %>
+    <% end %>
+</p>
