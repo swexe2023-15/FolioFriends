@@ -18,7 +18,7 @@
         <%= link_to 'Google Booksで見る', book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
         <%= form_with(url: likes_path, method: :post) do |form| %>
         <%= form.hidden_field :book_api_id, value: book["id"] %>
-        <%= form.submit "いいね" %>
+        <%= form.submit "お気に入りに追加" %>
         <% end %>
       </div>
     <% end %>

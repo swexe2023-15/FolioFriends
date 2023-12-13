@@ -5,7 +5,6 @@ document.addEventListener('click', function(event) {
     var bookApiId = event.target.dataset.bookApiId;
     var infoLink = event.target.getAttribute('href');
 
-    // Ajaxリクエストを使って履歴を記録
     fetch('/histories', {
       method: 'POST',
       headers: {
@@ -13,11 +12,20 @@ document.addEventListener('click', function(event) {
         'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
       },
       body: JSON.stringify({ book_api_id: bookApiId })
-    }).then(function(response) {
-      if (response.ok) {
-        // レスポンスが成功したら、Google Booksのページにリダイレクト
-        window.open(infoLink, '_blank');
-      }
-    });
+    }).then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('サーバーからのレスポンスが正しくありません。');
+        }
+      }).then(data => {
+        if (data.status === 'success') {
+          window.open(infoLink, '_blank');
+        } else {
+          console.error(data.message);
+        }
+      }).catch(error => {
+        console.error('エラーが発生しました:', error);
+      });
   }
 });

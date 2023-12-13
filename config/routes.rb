@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root 'bookshelves#index' # test
   resources :books, only: [:index]
-<<<<<<< HEAD
+  
   resources :likes, only: [:create, :destroy]
-=======
+  
   resources :bookshelves, only: [:index, :new, :create, :update, :destroy]
->>>>>>> X
+  
+  resources :histories, only: [:index, :create]
   
   get 'history/index'
   get 'history/create'
