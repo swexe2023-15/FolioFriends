@@ -1,26 +1,12 @@
 Rails.application.routes.draw do
-  root 'bookshelves#index' # test
+  root 'top#main' # test
+  resources :users, only: [:new, :create, :destroy]
   resources :books, only: [:index]
   resources :bookshelves, only: [:index, :new, :create, :update, :destroy]
   
-  get 'history/index'
-  get 'history/create'
-  get 'likes/create'
-  get 'likes/destroy'
-  get 'books/index'
-  get 'books/new'
-  get 'books/create'
-  get 'books/destroy'
-  get 'bookshelves/index'
-  get 'bookshelves/new'
-  get 'bookshelves/create'
-  get 'bookshelves/update'
-  get 'bookshelves/destroy'
-  get 'users/new'
-  get 'users/create'
-  get 'users/destroy'
-  get 'top/login'
-  get 'top/logout'
+  get 'login', to: 'top#login'
+  post 'login', to: 'top#login'
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

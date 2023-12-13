@@ -6,4 +6,13 @@
         
         <%= f.submit '登録' %>
     <% end %>
+    
+    <% if @bookshelf.errors.any? %>
+      <div id="error_explanation">
+        <% @bookshelf.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </div>
+    <% end %>
+
 </p>

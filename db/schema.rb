@@ -10,30 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_22_070618) do
-  create_table "bookshelves", force: :cascade do |t|
-    t.string "shelfname"
+ActiveRecord::Schema[7.0].define(version: 2023_12_13_084127) do
+  create_table "books", force: :cascade do |t|
+    t.string "bookname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "bookshelves", force: :cascade do |t|
+    t.string "shelfname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_bookshelves_on_user_id"
+  end
+
   create_table "histories", force: :cascade do |t|
-    t.string "book_api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
-    t.string "book_api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "password"
+    t.string "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bookshelves", "users"
 end
