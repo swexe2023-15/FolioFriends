@@ -1,6 +1,6 @@
 class BookshelvesController < ApplicationController
   def index
-    @bookshelves = Bookshelf.all
+    @bookshelves = current_user.bookshelves
     render
   end
 
@@ -13,6 +13,7 @@ class BookshelvesController < ApplicationController
     if @bookshelf.save
       redirect_to bookshelves_path
     else
+      logger.debug @bookshelf.errors.full_messages
       render 'new'
     end
   end
