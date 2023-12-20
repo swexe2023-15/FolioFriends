@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'login', to: 'top#login'
   post 'login', to: 'top#login'
-  delete 'logout', to: 'top#logout'
+  get 'logout', to: 'top#logout'
 
   resources :users, only: [:new, :create, :destroy] do
     member do
