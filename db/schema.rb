@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_20_063121) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_20_073337) do
   create_table "bookshelves", force: :cascade do |t|
     t.string "shelfname"
     t.integer "user_id", null: false
@@ -21,15 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_20_063121) do
     t.index ["user_id"], name: "index_bookshelves_on_user_id"
   end
 
-  create_table "bookshelves", force: :cascade do |t|
-    t.string "shelfname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "index_bookshelves_on_user_id"
-  end
-
   create_table "histories", force: :cascade do |t|
+    t.string "book_api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
@@ -37,9 +30,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_20_063121) do
   end
 
   create_table "likes", force: :cascade do |t|
+    t.string "book_api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.text "book_api_ids"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
