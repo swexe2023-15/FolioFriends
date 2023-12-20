@@ -1,9 +1,16 @@
 <h1>本棚一覧</h1>
 <p>
     <% @bookshelves.each do |e| %>
-    <%= e.shelfname %>
-    
+        <%= e.shelfname %>
+        
+        <%= link_to '削除', bookshelf_path(e), data: { "turbo_method": :delete } %>
+        <br>
     <% end %>
     
-    <%= link_to '新規追加', new_bookshelf_path %>
+    <%= link_to '本棚を新規追加', new_bookshelf_path %>
+    
+    <br>
+    
+    <br>
+    <%= link_to '書籍を検索する', books_path %>
 </p>

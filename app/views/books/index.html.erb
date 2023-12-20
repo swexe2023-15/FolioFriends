@@ -16,6 +16,7 @@
         <% end %>
         <p><%= book["volumeInfo"]["description"] %></p>
         <%= link_to 'Google Booksで見る', book["volumeInfo"]["infoLink"], target: "_blank" %>
+        <%= link_to '本棚に追加', bookshelves_path() %>
       </div>
     <% end %>
   </div>
