@@ -1,0 +1,18 @@
+<h1>公開された本棚</h1>
+<% @public_bookshelves.each do |shelf| %>
+  <div>
+    <h2><%= shelf.user.name %>の本棚: <%= shelf.shelfname %></h2>
+    <% if @books[shelf.id].present? %>
+        <% @books[shelf.id].each do |book| %>
+            <div>
+                <h3><%= book["volumeInfo"]["title"] %></h3>
+                <% if book["volumeInfo"]["imageLinks"] %>
+                    <%= image_tag book["volumeInfo"]["imageLinks"]["thumbnail"] %>
+                <% end %>
+            </div>
+        <% end %>
+    <% else %>
+      <p>この本棚には書籍がありません。</p>
+    <% end %>
+  </div>
+<% end %>

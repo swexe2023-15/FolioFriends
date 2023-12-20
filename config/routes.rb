@@ -1,33 +1,23 @@
 Rails.application.routes.draw do
-  root 'bookshelves#index' # test
-  resources :books, only: [:index]
-  
-  resources :likes, only: [:create, :destroy]
-  
-  resources :bookshelves, only: [:index, :new, :create, :update, :destroy]
-  
-  resources :histories, only: [:index, :create]
-  
-  get 'history/index'
-  get 'history/create'
-  get 'likes/create'
-  get 'likes/destroy'
-  get 'books/index'
-  get 'books/new'
-  get 'books/create'
-  get 'books/destroy'
-  get 'bookshelves/index'
-  get 'bookshelves/new'
-  get 'bookshelves/create'
-  get 'bookshelves/update'
-  get 'bookshelves/destroy'
-  get 'users/new'
-  get 'users/create'
-  get 'users/destroy'
-  get 'top/login'
-  get 'top/logout'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'top#main'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'login', to: 'top#login'
+  post 'login', to: 'top#login'
+  delete 'logout', to: 'top#logout'
+
+  resources :users, only: [:new, :create, :destroy] do
+    member do
+      get 'dashboard'
+    end
+  end
+
+  resources :bookshelves, except: [:show]
+  post 'add_book_to_shelf', to: 'bookshelves#add_book'
+  get 'public_bookshelves', to: 'bookshelves#public_bookshelves'
+
+  resources :books, only: [:index]
+
+  resources :likes, only: [:create, :destroy, :index]
+
+  resources :histories, only: [:index, :create]
 end

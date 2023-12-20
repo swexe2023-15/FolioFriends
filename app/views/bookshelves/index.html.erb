@@ -1,10 +1,20 @@
 <h1>本棚一覧</h1>
 <p>
-    <% @bookshelves.each do |e| %>
-    <%= e.shelfname %>
-    
+    <% @bookshelves.each do |bookshelf| %>
+        <h2><%= link_to bookshelf.shelfname, edit_bookshelf_path(bookshelf) %></h2>
+        <% if @books[bookshelf.id].present? %>
+            <% @books[bookshelf.id].each do |book| %>
+                <h3><%= book["volumeInfo"]["title"] %></h3>
+                <% if book["volumeInfo"]["imageLinks"] %>
+                    <%= image_tag book["volumeInfo"]["imageLinks"]["thumbnail"] %>
+                <% end %>
+                
+            <% end %>
+        <% else%>
+            <p>この本棚には書籍がありません</p>
+        <% end %>
     <% end %>
     
-    <%= link_to '新規追加', bookshelves_create_path %>
+    <%= link_to '新規追加', new_bookshelf_path %>
     <%= link_to 'マイページに戻る', root_path %>
 </p>

@@ -4,6 +4,8 @@
   <%= form.submit "検索" %>
 <% end %>
 
+<%= link_to '本棚を見る', bookshelves_path %>
+
 <% if @books.present? %>
   <div>
     <% @books.each do |book| %>
@@ -17,12 +19,17 @@
         <p><%= book["volumeInfo"]["description"] %></p>
         <%= link_to 'Google Booksで見る', book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
         <%= form_with(url: likes_path, method: :post) do |form| %>
-        <%= form.hidden_field :book_api_id, value: book["id"] %>
-        <%= form.submit "お気に入りに追加" %>
+          <%= form.hidden_field :book_api_id, value: book["id"] %>
+          <%= form.submit "お気に入り" %>
+        <% end %>
+        <%= form_with url: add_book_to_shelf_path, method: :post do |form| %>
+          <%= form.hidden_field :book_api_id, value: book["id"] %>
+          <%= form.select :shelf_id, options_for_select(current_user.bookshelves.map { |shelf| [shelf.shelfname, shelf.id] }) %>
+          <%= form.submit "本棚に追加" %>
         <% end %>
       </div>
     <% end %>
   </div>
 <% else %>
-  <p>No books found.</p>
+  <p>本が見つかりません</p>
 <% end %>

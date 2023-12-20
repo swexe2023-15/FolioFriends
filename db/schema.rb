@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_06_080436) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_20_063121) do
   create_table "bookshelves", force: :cascade do |t|
     t.string "shelfname"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_public", default: false
+    t.text "book_api_ids"
     t.index ["user_id"], name: "index_bookshelves_on_user_id"
   end
 
@@ -23,6 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_080436) do
     t.string "book_api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -35,11 +39,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_080436) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "password"
+    t.string "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "bookshelves", "users"
+  add_foreign_key "histories", "users"
   add_foreign_key "likes", "users"
 end
