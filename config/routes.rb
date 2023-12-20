@@ -1,17 +1,23 @@
 Rails.application.routes.draw do
-  root 'top#main' # test
-  resources :users, only: [:new, :create, :destroy]
-  resources :books, only: [:index]
-  
-  resources :likes, only: [:create, :destroy]
-  
-  resources :bookshelves, only: [:index, :new, :create, :update, :destroy]
-  
+  root 'top#main'
+
   get 'login', to: 'top#login'
   post 'login', to: 'top#login'
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  delete 'logout', to: 'top#logout'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :users, only: [:new, :create, :destroy] do
+    member do
+      get 'dashboard'
+    end
+  end
+
+  resources :bookshelves, except: [:show]
+  post 'add_book_to_shelf', to: 'bookshelves#add_book'
+  get 'public_bookshelves', to: 'bookshelves#public_bookshelves'
+
+  resources :books, only: [:index]
+
+  resources :likes, only: [:create, :destroy, :index]
+
+  resources :histories, only: [:index, :create]
 end

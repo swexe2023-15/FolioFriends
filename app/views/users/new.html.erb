@@ -1,12 +1,14 @@
-<h1>ユーザーの新規登録</h1>
-<p>
-    <%= form_with model: @user, local: true do |f| %>
-        <%= f.label :name, 'ユーザー名' %>
-        <%= f.text_field :name %>
-        
-        <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password %>
+<h1>新規登録</h1>
 
-        <%= f.submit '登録' %>
-    <% end %>
-</p>
+<%= form_with model: @user, url: users_path do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+
+  <%= form.label :password_confirmation, "パスワード(確認)"%>
+  <%= form.password_field :password_confirmation %>
+
+  <%= form.submit "登録する" %>
+<% end %>
