@@ -18,14 +18,14 @@ document.addEventListener('click', function(event) {
         } else {
           throw new Error('サーバーからのレスポンスが正しくありません。');
         }
-      }).then(data => {
-        if (data.status === 'success') {
-          window.open(infoLink, '_blank');
-        } else {
-          console.error(data.message);
-        }
-      }).catch(error => {
-        console.error('エラーが発生しました:', error);
-      });
+    }).then(data => {
+      if (data.status === 'success') {
+        window.open(infoLink, '_blank');
+      } else {
+        console.error(data.message);
+      }
+    }).catch(error => {
+      console.error('エラーが発生しました:', error);
+    });
   }
 });
