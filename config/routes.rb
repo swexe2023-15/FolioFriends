@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :bookshelves, except: [:show]
   post 'add_book_to_shelf', to: 'bookshelves#add_book'
   get 'public_bookshelves', to: 'bookshelves#public_bookshelves'
+  delete 'bookshelves/:id/remove_book/:book_api_id', to: 'bookshelves#remove_book', as: 'remove_book_from_shelf'
 
   resources :books, only: [:index]
 

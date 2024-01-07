@@ -1,7 +1,7 @@
 <h1>本棚を編集</h1>
 
 <%= form_with(model: @bookshelf, local: true) do |form| %>
-    <%= form.label :shelfname %>
+    <%= form.label :shelfname, "本棚の名前" %>
     <%= form.text_field :shelfname %>
 
     <%= form.label :is_public, "本棚の公開状態:" %>
@@ -9,6 +9,17 @@
     <%= form.label :is_public, "公開", value: true %>
     <%= form.radio_button :is_public, false %>
     <%= form.label :is_public, "非公開", value: false %>
-
     <%= form.submit "更新" %>
+<% end %>
+
+<%= button_to '本棚を削除', bookshelf_path(@bookshelf), method: :delete, data: { confirm: '本棚を削除してよろしいですか？' } %>
+    
+<% @books.each do |book| %>
+  <div>
+    <h3><%= book["volumeInfo"]["title"] %></h3>
+    <% if book["volumeInfo"]["imageLinks"] %>
+      <%= image_tag book["volumeInfo"]["imageLinks"]["thumbnail"] %>
+    <% end %>
+    <%= button_to '本棚から削除', remove_book_from_shelf_path(id: @bookshelf.id, book_api_id: book["id"]), method: :delete %>
+  </div>
 <% end %>
