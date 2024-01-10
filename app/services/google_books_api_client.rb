@@ -3,7 +3,7 @@ class GoogleBooksApiClient
   base_uri 'https://www.googleapis.com/books/v1'
 
   def self.search_books(query, lang: nil)
-    options = { q: query }
+    options = { q: query, key: ENV['GOOGLE_BOOKS_API_KEY'] }
     options[:langRestrict] = lang if lang.present?
     response = get("/volumes", query: options)
 

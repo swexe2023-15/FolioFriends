@@ -10,11 +10,11 @@
   <div>
     <% @books.each do |book| %>
       <div>
-        <h3><%= book["volumeInfo"]["title"] %></h3>
+        <h3><%= link_to book["volumeInfo"]["title"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %></h3>
         <p><%= book["volumeInfo"]["authors"]&.join(", ") %></p>
         <p><%= book["volumeInfo"]["publishedDate"] %></p>
         <% if book["volumeInfo"]["imageLinks"] %>
-          <%= image_tag book["volumeInfo"]["imageLinks"]["thumbnail"] %>
+          <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"]), target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
         <% end %>
         <p><%= book["volumeInfo"]["description"] %></p>
         <%= link_to 'Google Booksで見る', book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
@@ -24,7 +24,12 @@
         <% end %>
         <%= form_with url: add_book_to_shelf_path, method: :post do |form| %>
           <%= form.hidden_field :book_api_id, value: book["id"] %>
-          <%= form.select :shelf_id, options_for_select(current_user.bookshelves.map { |shelf| [shelf.shelfname, shelf.id] }) %>
+          <%= form.select :shelf_id, 
+                options_for_select([['本棚を選択', '', {disabled: true, selected: true}]] + 
+                current_user.bookshelves.where.not(id: [current_user.favorite_shelf.id, current_user.history_shelf.id]).map { |shelf| [shelf.shelfname, shelf.id] }), 
+                {}, 
+                {class: 'form-control'} 
+          %>
           <%= form.submit "本棚に追加" %>
         <% end %>
       </div>

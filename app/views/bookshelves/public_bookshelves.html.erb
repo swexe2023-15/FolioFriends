@@ -5,9 +5,12 @@
     <% if @books[shelf.id].present? %>
         <% @books[shelf.id].each do |book| %>
             <div>
-                <h3><%= book["volumeInfo"]["title"] %></h3>
-                <% if book["volumeInfo"]["imageLinks"] %>
-                    <%= image_tag book["volumeInfo"]["imageLinks"]["thumbnail"] %>
+                <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["infoLink"] %>
+                  <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"]), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+                <% end %>
+              
+                <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
+                  <%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
                 <% end %>
             </div>
         <% end %>

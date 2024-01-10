@@ -12,7 +12,6 @@ class TopController < ApplicationController
       else
         flash.now[:alert] = 'ユーザーネームまたはパスワードが不正です'
         render "login"
-        
       end
     end
   end

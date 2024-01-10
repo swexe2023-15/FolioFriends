@@ -6,9 +6,6 @@ Rails.application.routes.draw do
   get 'logout', to: 'top#logout'
 
   resources :users, only: [:new, :create, :destroy] do
-    member do
-      get 'dashboard'
-    end
   end
 
   resources :bookshelves, except: [:show]

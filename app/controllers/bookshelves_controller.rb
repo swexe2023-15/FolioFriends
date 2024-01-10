@@ -5,9 +5,10 @@ class BookshelvesController < ApplicationController
     @bookshelves.each do |shelf|
       @books[shelf.id] = shelf.book_api_ids.map do |api_id|
         response = GoogleBooksApiClient.book_details(api_id)
-        response
-      end
+        response unless response.nil?
+      end.compact
     end
+    puts @books.inspect
   end
 
   def new

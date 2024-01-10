@@ -1,10 +1,19 @@
 <% if current_user %>
-  <%= link_to '書籍を検索する', books_path %>
-  <br>
-  <%= link_to '自分の本棚を見る', bookshelves_path %>
-  <br>
-  <%= link_to "ログアウト", logout_path %>
+  <div class="search-bar">
+    <%= form_with url: books_path, method: :get do |form| %>
+      <%= form.label :query, "書籍を検索:" %>
+      <%= form.text_field :query %>
+      <%= form.submit "検索" %>
+    <% end %>
+  </div>
+  <div class="navigation-menu">
+    <%= link_to '自分の本棚を見る', bookshelves_path %><br>
+    <%= link_to '他のユーザーの本棚を見る', public_bookshelves_path %><br>
+    <%= link_to "ログアウト", logout_path %>
+  </div>
 <% else %>
-  <%= link_to '新規登録', new_user_path %>
-  <%= link_to 'ログイン', login_path %>
+  <div class="navigation-menu">
+    <%= link_to '新規登録', new_user_path %><br>
+    <%= link_to 'ログイン', login_path %>
+  </div>
 <% end %>

@@ -1,11 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:dashboard]
-
-  def dashboard
-    @favorite_books = @user.likes.map do |like|
-      GoogleBooksApiClient.book_details(like.book_api_id)
-    end
-  end
   
   def new
     @user = User.new
