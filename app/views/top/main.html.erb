@@ -1,8 +1,9 @@
-<header class="page-header">
-  <img src="../../app/assets/images/FolioFriends.png">
-</header>
-<div id="top-main-padding">
+
 <% if current_user %>
+<header class="page-header">
+  <%= image_tag 'Folio Friends.png' %>
+</header>
+<div id="top-main">
   <div class="search-bar">
     <%= form_with url: books_path, method: :get do |form| %>
       <%= form.label :query, "書籍を検索:" %>
@@ -24,13 +25,16 @@
   </div>
 <% else %>
   <div class="navigation-menu2">
-    <p class="new">アカウントをお持ちでない方</p>
-    <div class="new-user">
-      <%= link_to '新規登録', new_user_path %><br>
-    </div>
+    <div class="img-logo2">
+      <%= image_tag 'FolioFriends_logo.png' %>
+      <p class="new">＼ アカウントをお持ちでない方 ／</p>
+      <div class="new-user">
+        <%= link_to '新規登録', new_user_path %>
+      </div>
+    </dvi>
     <br>
     <br>
-    <p class="log">アカウントをお持ちの方</p>
+    <p class="log">＼ アカウントをお持ちの方 ／</p>
     <div class="login">
 
       <%= link_to 'ログイン', login_path %>
