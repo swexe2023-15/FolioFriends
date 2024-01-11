@@ -13,3 +13,115 @@
  *= require_tree .
  *= require_self
  */
+ 
+ /* top_main */
+.search-bar{
+    padding:20px 20px;
+    font-size:25px;
+    background-color:#f5f5f5;
+}
+.to-my-bookshelves{
+    margin: 5px;
+    padding:10px;
+    transition: .3s;
+    font-size:18px;
+}
+.to-my-bookshelves:hover {
+    background-color:#d3d3d3;
+}
+.to-other-bookshelves{
+    margin:5px;
+    padding:10px;
+    transition: .3s;
+    font-size:18px;
+}
+.to-other-bookshelves:hover {
+    background-color:#d3d3d3;
+}
+.logout{
+    margin:10px;
+    padding:10px;
+    transition: .3s;
+    font-size:18px;
+}
+.logout:hover {
+    background-color:#d3d3d3;
+}
+
+.navigation-menu2{
+    margin:20px;
+}
+.new{
+    font-size:20px; /* コピー文字サイズ */
+  font-weight: bold; /* コピー文字の太さ */
+  color: initial; /* コピー文字の色 */
+  left: 50%;
+  width: 100%;
+}
+.new-user{
+    font-size:20px;
+    padding:10px;
+    width: 200px;
+  max-width: 350px; /* ボタン幅 */
+  background-color: white; /* ボタン上色 */
+  position: relative;
+  padding: 10px 5px;
+  border-radius: 100vh;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.2s;
+  text-align: center;
+  border:2px solid #808080;
+}
+.log{
+    font-size:20px; /* コピー文字サイズ */
+  font-weight: bold; /* コピー文字の太さ */
+  color: initial; /* コピー文字の色 */
+  left: 50%;
+  width: 100%;
+}
+.login{
+    font-size:20px;
+    width: 200px;
+  max-width: 350px; /* ボタン幅 */
+  background-color: white; /* ボタン上色 */
+  position: relative;
+  padding: 10px 5px;
+  border-radius: 100vh;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.2s;
+  text-align: center;
+  border:2px solid #1e90ff;
+}
+
+/* top_login */
+.login-user{
+    font-size:18px;
+    margin:5px;
+}
+.login-password{
+    font-size:18px;
+    margin:5px;
+}
+.login-button{
+    margin:10px 5px;
+}
+
+/* users_new*/
+.user-new-header{
+    padding:20px 20px;
+    font-size:25px;
+    background-color:#f5f5f5;
+}
+.username{
+    font-size:18px;
+    margin:5px;
+}
+.password{
+    font-size:18px;
+    margin:5px;
+}
+.user-register{
+    margin:10px 5px;
+}

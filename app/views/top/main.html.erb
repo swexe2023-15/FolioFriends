@@ -1,3 +1,7 @@
+<header class="page-header">
+  <img src="../../app/assets/images/FolioFriends.png">
+</header>
+<div id="top-main-padding">
 <% if current_user %>
   <div class="search-bar">
     <%= form_with url: books_path, method: :get do |form| %>
@@ -6,14 +10,31 @@
       <%= form.submit "検索" %>
     <% end %>
   </div>
-  <div class="navigation-menu">
-    <%= link_to '自分の本棚を見る', bookshelves_path %><br>
-    <%= link_to '他のユーザーの本棚を見る', public_bookshelves_path %><br>
-    <%= link_to "ログアウト", logout_path %>
+  <br>
+  <div class="navigation-menu1">
+    <div class="to-my-bookshelves">
+      <%= link_to '自分の本棚を見る', bookshelves_path %><br>
+    </div>
+    <div class="to-other-bookshelves">
+      <%= link_to '他のユーザーの本棚を見る', public_bookshelves_path %><br>
+    </div>
+    <div class="logout">
+      <%= link_to "ログアウト", logout_path %>
+    </div>
   </div>
 <% else %>
-  <div class="navigation-menu">
-    <%= link_to '新規登録', new_user_path %><br>
-    <%= link_to 'ログイン', login_path %>
+  <div class="navigation-menu2">
+    <p class="new">アカウントをお持ちでない方</p>
+    <div class="new-user">
+      <%= link_to '新規登録', new_user_path %><br>
+    </div>
+    <br>
+    <br>
+    <p class="log">アカウントをお持ちの方</p>
+    <div class="login">
+
+      <%= link_to 'ログイン', login_path %>
+    </div>
   </div>
 <% end %>
+</div>
