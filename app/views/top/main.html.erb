@@ -1,7 +1,4 @@
 <% if current_user %>
-<header class="page-header">
-  <%= image_tag 'Folio Friends.png' %>
-</header>
 <div class="top-main">
   <div class="search-bar">
     <%= form_with url: books_path, method: :get do |form| %>
@@ -16,9 +13,6 @@
     </div>
     <div class="to-other-bookshelves">
       <%= link_to '他のユーザーの本棚を見る', public_bookshelves_path %><br>
-    </div>
-    <div class="logout">
-      <%= link_to "ログアウト", logout_path %>
     </div>
   </div>
 <% else %>

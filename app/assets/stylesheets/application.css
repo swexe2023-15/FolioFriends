@@ -185,14 +185,18 @@
 }
 
 .logout-button {
-    padding: 5px 10px;
-    margin-left: 15px;
+    display:flex;
+    text-align: right;
+    padding: 2px 4px;
     background-color: #f44336;
     color: white;
     text-decoration: none;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    width: 5em;
+    height: 20px;
+    margin: 0 0 0 auto;
 }
 
 .logout-button:hover {
@@ -242,4 +246,22 @@ h2 {
         display: block;
         margin-right: 0;
     }
+}
+
+.search-bar input[type="text"] {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 500px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+}
+
+.search-bar input[type="submit"] {
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 15px;
+    border: 1px solid #4CAF50;
+    background-color: #4CAF50;
+    color: white;
 }

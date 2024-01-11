@@ -11,24 +11,23 @@
   </head>
 
   <body>
-    <header>
-      <nav>
-        <div class="site-name">
-          <%= link_to "FolioFriends", root_path %>
-        </div>
-        <% if current_user %>
-          <% unless controller_name == 'top' && action_name == 'main' %>
-            <div class="mini-search-bar">
-              <%= form_with url: books_path, method: :get do |form| %>
-                <%= form.text_field :query, placeholder: "書籍を検索", aria_label: "検索" %>
-                <%= form.submit "検索" %>
-              <% end %>
-            </div>
-          <%end %>
-              <%= link_to 'ログアウト', logout_path, method: :delete, class: 'logout-button' %>
-        <% end %>
-      </nav>
+    <header class="page-header">
+      <% if current_user %>
+        <%= link_to image_tag('Folio Friends.png'), root_path %>
+      <% end %>
     </header>
+
+    <% if current_user %>
+      <% unless controller_name == 'top' && action_name == 'main' %>
+        <div class="mini-search-bar">
+          <%= form_with url: books_path, method: :get do |form| %>
+            <%= form.text_field :query, placeholder: "書籍を検索", aria_label: "検索" %>
+            <%= form.submit "検索" %>
+          <% end %>
+        </div>
+      <%end %>
+      <%= link_to 'ログアウト', logout_path, method: :delete, class: 'logout-button' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
