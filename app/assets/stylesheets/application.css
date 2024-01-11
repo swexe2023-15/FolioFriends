@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ 
  /* header */
  .page-header {
      background-color:black;
@@ -166,15 +167,79 @@
     margin:50px 5px;
 }
 
-/* bookshelves_index */
-#bookshelves-index{
-    margin:20px;
-    padding:10px 10px 10px 20px;
-    border-width: thin;
-    border-style: solid;
-    border-color: #dcdcdc;
+.mini-search-bar {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
 }
-.bookshelves-view{
-    text-decoration:underline;
-    text-decoration-color:#d3d3d3;
+
+.mini-search-bar input[type="text"] {
+    margin-right: 1px;
+    padding: 5px;
+    width: 200px;
+}
+
+.mini-search-bar input[type="submit"] {
+    padding: 3px 6px;
+    margin-right: 15px;
+}
+
+.logout-button {
+    padding: 5px 10px;
+    margin-left: 15px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #e53935;
+}
+
+/* 本棚 */
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.books-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.book-link {
+    flex: 0 0 150px;
+    text-align: center;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-image {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.book-title {
+    font-size: 1em;
+}
+
+
+.bookshelf {
+    margin-bottom: 40px;
+}
+
+@media screen and (max-width: 600px) {
+    .book-link {
+        display: block;
+        margin-right: 0;
+    }
 }
