@@ -1,21 +1,25 @@
 <h1>公開された本棚</h1>
 <% @public_bookshelves.each do |shelf| %>
-  <div>
+  <div class="bookshelf">
     <h2><%= shelf.user.name %>の本棚: <%= shelf.shelfname %></h2>
-    <% if @books[shelf.id].present? %>
+    <div class="books-container">
+      <% if @books[shelf.id].present? %>
         <% @books[shelf.id].each do |book| %>
-            <div>
-                <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["infoLink"] %>
-                  <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"]), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
-                <% end %>
-              
-                <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
-                  <%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
-                <% end %>
-            </div>
+          <div class="book-link">
+            <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["infoLink"] %>
+              <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"]), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+            <% end %>
+                
+            <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
+              <div class="book-title">
+                <%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
-    <% else %>
-      <p>この本棚には書籍がありません。</p>
-    <% end %>
+      <% else %>
+        <p>この本棚には書籍がありません。</p>
+      <% end %>
+    </div>
   </div>
 <% end %>

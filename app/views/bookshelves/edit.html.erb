@@ -12,17 +12,19 @@
     <%= form.submit "更新" %>
 <% end %>
 
-<%= button_to '本棚を削除', bookshelf_path(@bookshelf), method: :delete, data: { confirm: '本棚を削除してよろしいですか？' } %>
-    
-<% @books.each do |book| %>
-  <div>
-    <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["infoLink"] %>
-      <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"]), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
-    <% end %>
+<div class="books-container">
+  <% @books.each do |book| %>
+    <div class="book-link">
+      <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["infoLink"] %>
+        <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"], class: 'book-image'), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+      <% end %>
 
-    <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
-      <%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
-    <% end %>
-    <%= button_to '本棚から削除', remove_book_from_shelf_path(id: @bookshelf.id, book_api_id: book["id"]), method: :delete %>
-  </div>
-<% end %>
+      <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
+        <div class="book-title">
+          <%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+        </div>
+      <% end %>
+      <%= button_to '本棚から削除', remove_book_from_shelf_path(id: @bookshelf.id, book_api_id: book["id"]), method: :delete, data: { confirm: '本棚を削除してよろしいですか？' } %>
+    </div>
+  <% end %>
+</div>

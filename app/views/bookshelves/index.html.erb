@@ -1,22 +1,30 @@
 <h1>本棚一覧</h1>
-<p>
+<div>
     <% @bookshelves.each do |bookshelf| %>
-        <h2><%= link_to bookshelf.shelfname, edit_bookshelf_path(bookshelf) %></h2>
-        <% if @books[bookshelf.id].present? %>
-            <% @books[bookshelf.id].each do |book| %>
-                <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["infoLink"] %>
-                    <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"]), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+        <div class="bookshelf">
+            <h2><%= link_to bookshelf.shelfname, edit_bookshelf_path(bookshelf) %></h2>
+            <div class="books-container">
+                <% if @books[bookshelf.id].present? %>
+                    <% @books[bookshelf.id].each do |book| %>
+                        <div class="book-link">
+                            <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["infoLink"] %>
+                                <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"], class: 'book-image'), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+                            <% end %>
+                        
+                            <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
+                                <div class="book-title">
+                                    <%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% else %>
+                    <p>この本棚には書籍がありません</p>
                 <% end %>
-            
-                <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
-                    <%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
-                <% end %>
-            <% end %>
-        <% else%>
-            <p>この本棚には書籍がありません</p>
-        <% end %>
+            </div>
+        </div>
     <% end %>
-    
-    <%= link_to '新規追加', new_bookshelf_path %>
-    <%= link_to 'マイページに戻る', root_path %>
-</p>
+</div>
+
+<%= link_to '新規追加', new_bookshelf_path %>
+<%= link_to 'マイページに戻る', root_path %>

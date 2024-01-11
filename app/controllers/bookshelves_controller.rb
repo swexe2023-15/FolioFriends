@@ -8,7 +8,6 @@ class BookshelvesController < ApplicationController
         response unless response.nil?
       end.compact
     end
-    puts @books.inspect
   end
 
   def new
