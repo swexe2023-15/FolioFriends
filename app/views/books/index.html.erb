@@ -7,7 +7,9 @@
         <% if book["volumeInfo"]["imageLinks"] %>
           <%= link_to image_tag(book["volumeInfo"]["imageLinks"]["thumbnail"]), book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %>
         <% end %>
-        <h3><%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %></h3>
+        <% if book["volumeInfo"]["title"] && book["volumeInfo"]["infoLink"] %>
+          <h3><%= link_to book["volumeInfo"]["title"], book["volumeInfo"]["infoLink"], target: "_blank", data: { book_api_id: book["id"], action: 'record-history' } %></h3>
+        <% end %>
         <p><%= book["volumeInfo"]["authors"]&.join(", ") %></p>
         <p><%= book["volumeInfo"]["publishedDate"] %></p>
         <p><%= book["volumeInfo"]["description"] %></p>
