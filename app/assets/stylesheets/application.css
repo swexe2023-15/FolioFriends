@@ -302,3 +302,11 @@ h2 {
     cursor: pointer;
     font-size: 18px;
 }
+
+.book-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
